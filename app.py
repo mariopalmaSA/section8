@@ -5,7 +5,7 @@ from security import authenticate, identity
 from resources.user import UserRegister
 from resources.item import Item, ItemsList
 from resources.store import Store, StoreList
-from db import db
+# from db import db
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
@@ -14,9 +14,6 @@ app.config['PROPAGATE_EXCEPTIONS'] = True
 app.secret_key = 'tomato'
 api = Api(app)
 
-@app.before_first_request
-def create_tables():
-    db.create_all()
 
 jwt = JWT(app, authenticate, identity)
 
